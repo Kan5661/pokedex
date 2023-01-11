@@ -1,0 +1,76 @@
+.nav {
+  background-color: #f90707;
+  color: rgb(253, 253, 253);
+  text-align: center;
+  padding: 20px 0px;
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.box {
+  width: 80%;
+  height: 500px;
+  margin: 50px auto auto;
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  border: 10px #019328 solid;
+  box-shadow: 0 0 10px 5px black;
+}
+
+.pokemonInfo {
+  background-color: white;
+  border: solid rgb(135, 116, 192) 1px;
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  
+}
+
+.button {
+  background-color: rgb(50, 219, 70);
+  border: none;
+}
+.button:hover {
+  background-color: rgb(52, 242, 74);
+}
+.button:active {
+  background-color: rgb(113, 252, 129);
+}
+
+input {
+  background-color: white;
+  width: 200px;
+  height: 45px;
+  font-size: 20px;
+  border: solid 2px;
+  border-radius: 5%;
+}
+img {
+  margin: auto auto;
+  height: 300px;
+}
+.image {
+  display: flex;
+  justify-content: center;
+  border: rgb(74, 243, 77) 10px inset;
+}
+
+.pokemonDescription {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  background-color: #92fa99;
+  box-shadow: 0 0 5px 0px;
+}
+
+#image {
+  background-color: rgb(208, 255, 201);
+}
+
+.info1, .info2 {
+  margin: auto 40px 
+}
+
+#attr {
+  font-weight: 700;
+  font-size: large;
+  color: rgb(1, 53, 1);
+}
