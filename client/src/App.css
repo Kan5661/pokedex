@@ -23,9 +23,10 @@
 }
 
 .pokemonInfo {
-  border: solid rgb(135, 116, 192) 1px;
+  border: solid rgb(42, 206, 83) 1px;
   display: grid;
   grid-template-rows: 20px 2fr 1fr;
+  min-width: 500px;
   
 }
 
@@ -52,7 +53,7 @@ img {
 
 .pokemonDescription {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
   background-color: #92fa99;
   color: rgb(0, 49, 2);
   box-shadow: 0 0 2px 0px;
@@ -62,22 +63,21 @@ img {
   background-color: rgb(199, 255, 190);
 }
 
-.info1, .info2 {
-  margin: auto 40px 
+.info {
+  font-size: 14px;
+  margin: auto 10px
 }
 
 #attr {
   font-weight: 700;
-  font-size: large;
   color: rgb(1, 53, 1);
 }
 
 input {
-  width: 50px;
+  width: 45px;
 }
 
 .search {
   display: flex;
   flex-direction: row;
 }
-

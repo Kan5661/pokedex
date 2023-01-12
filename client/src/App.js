@@ -9,7 +9,8 @@ function App() {
     pokemonTypes: [],
     pokemonHeight: 0,
     pokemonWeight: 0,
-    pokemonAbilties: []
+    pokemonAbilties: [],
+    pokemonStat: {}
   })
 
   useEffect(() => {
@@ -23,6 +24,14 @@ function App() {
         result.pokemonImgUrl = data.sprites.front_default
         result.pokemonTypes = data.types.map((item) => item.type.name)
         result.pokemonAbilties = data.abilities.map((item) => item.ability.name)
+        result.pokemonStat = {
+          hp: data.stats[0].base_stat,
+          attack: data.stats[1].base_stat,
+          defense: data.stats[2].base_stat,
+          special_attack: data.stats[3].base_stat,
+          special_defense: data.stats[4].base_stat,
+          speed: data.stats[5].base_stat,
+        }
 
       setPokemon(result)
     })
@@ -58,15 +67,25 @@ function App() {
             <img src={pokemon.pokemonImgUrl}></img>
           </div>
           <div className="pokemonDescription">
-            <div className="info1">
+            <div className="info">
               <p> <span id="attr">Name:</span> {pokemon.pokemonName}</p>
               <p> <span id="attr">Types:</span> {pokemon.pokemonTypes.join(", ")}</p>
               <p> <span id="attr">Abilities:</span> {pokemon.pokemonAbilties.join(', ')}</p>
             </div>
-            <div className="info2">
+            <div className="info">
               <p> <span id="attr">Height:</span> {pokemon.pokemonHeight} </p>
               <p> <span id="attr">Weight:</span> {pokemon.pokemonWeight}</p>
               <p> <span id="attr">id:</span> {pokemonIndex}</p>
+            </div>
+            <div className="info">
+              <p> <span id="attr">hp: </span> {pokemon.pokemonStat.hp}</p>
+              <p> <span id="attr">attack: </span> {pokemon.pokemonStat.atktac}</p>
+              <p> <span id="attr">defense: </span> {pokemon.pokemonStat.defense}</p>
+            </div>
+            <div className="info">
+              <p> <span id="attr">speed: </span> {pokemon.pokemonStat.speed} </p>
+              <p> <span id="attr">special-attack: </span> {pokemon.pokemonStat.special_attack}</p>
+              <p> <span id="attr">special-defense: </span> {pokemon.pokemonStat.special_defense}</p>
             </div>
           </div>
         </div>
