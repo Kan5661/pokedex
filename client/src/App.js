@@ -32,12 +32,30 @@ function App() {
 
   return (
     <div className="app">
-      <nav className="nav">Pokemon idex</nav>
+      <nav className="nav">Pokédex</nav>
       <div className="box">
-        <button onClick={() => pokemonIndex > 1? setPokemonIndex(pokemonIndex - 1) : setPokemonIndex(905)} className="button">Prev</button>
+
+        <button onClick={() => pokemonIndex > 1? setPokemonIndex(Number(pokemonIndex) - 1) : setPokemonIndex(905)} className="button">&larr;</button>
+
         <div className="pokemonInfo" id="image">
+          <div className='search'>
+            <svg width="25" height="30">
+              <circle cx="12" cy="11" r="7" fillOpacity="0" stroke="black" />
+              <circle cx="12" cy="11" r="0.5" />
+              <circle cx="12" cy="11" r="1.5" fillOpacity="0" stroke='black' />
+              <line x1="13" y1="11" x2="19" y2="11" stroke='black'  />
+              <line x1="5" y1="11" x2="10" y2="11" stroke='black'  />
+            </svg>
+            <form>
+              <input max="905" min="1" type="number" value={pokemonIndex} onChange={(e) => {
+                e.preventDefault()
+                setPokemonIndex(e.target.value)
+                }}
+                ></input>
+            </form>
+          </div>
           <div className="image">
-          <img src={pokemon.pokemonImgUrl}></img>
+            <img src={pokemon.pokemonImgUrl}></img>
           </div>
           <div className="pokemonDescription">
             <div className="info1">
@@ -52,7 +70,9 @@ function App() {
             </div>
           </div>
         </div>
-        <button onClick={() => pokemonIndex < 905? setPokemonIndex(pokemonIndex + 1): setPokemonIndex(1)} className="button">Next</button>
+
+        <button
+         onClick={() => pokemonIndex < 905? setPokemonIndex(Number(pokemonIndex) + 1): setPokemonIndex(1)} className="button">	&rarr;</button>
       </div>
     </div>
   );
