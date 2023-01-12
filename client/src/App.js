@@ -79,7 +79,7 @@ function App() {
             </div>
             <div className="info">
               <p> <span id="attr">hp: </span> {pokemon.pokemonStat.hp}</p>
-              <p> <span id="attr">attack: </span> {pokemon.pokemonStat.atktac}</p>
+              <p> <span id="attr">attack: </span> {pokemon.pokemonStat.attack}</p>
               <p> <span id="attr">defense: </span> {pokemon.pokemonStat.defense}</p>
             </div>
             <div className="info">
