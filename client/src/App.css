@@ -46,6 +46,9 @@ img {
   margin: auto auto;
   height: 300px;
 }
+.pokemonAnimation {
+  animation: pokemonFadeIn 1s
+}
 .image {
   display: flex;
   justify-content: center;
@@ -80,4 +83,18 @@ input {
 .search {
   display: flex;
   flex-direction: row;
+}
+
+@keyframes pokemonFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  30% {
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

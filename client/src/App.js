@@ -12,7 +12,7 @@ function App() {
     pokemonAbilties: [],
     pokemonStat: {}
   })
-
+  const [key, setKey] = useState(1)
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonIndex}`)
     .then(res => res.json())
@@ -44,7 +44,10 @@ function App() {
       <nav className="nav">Pokédex</nav>
       <div className="box">
 
-        <button onClick={() => pokemonIndex > 1? setPokemonIndex(Number(pokemonIndex) - 1) : setPokemonIndex(905)} className="button">&larr;</button>
+        <button onClick={() => {
+          pokemonIndex > 1? setPokemonIndex(Number(pokemonIndex) - 1) : setPokemonIndex(905)
+          setKey(key + 1)
+          }} className="button">&larr;</button>
 
         <div className="pokemonInfo" id="image">
           <div className='search'>
@@ -64,7 +67,7 @@ function App() {
             </form>
           </div>
           <div className="image">
-            <img src={pokemon.pokemonImgUrl}></img>
+            <img key={key} className='pokemonAnimation' src={pokemon.pokemonImgUrl}></img>
           </div>
           <div className="pokemonDescription">
             <div className="info">
@@ -91,7 +94,10 @@ function App() {
         </div>
 
         <button
-         onClick={() => pokemonIndex < 905? setPokemonIndex(Number(pokemonIndex) + 1): setPokemonIndex(1)} className="button">	&rarr;</button>
+         onClick={() => {
+          pokemonIndex < 905? setPokemonIndex(Number(pokemonIndex) + 1): setPokemonIndex(1)
+          setKey(key + 1)
+          }} className="button">	&rarr;</button>
       </div>
     </div>
   );
