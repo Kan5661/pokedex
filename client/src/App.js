@@ -1,5 +1,6 @@
 import './App.css';
 import { useEffect, useState } from 'react'
+import searchPokemon from './MorePokemonCards.jsx';
 
 function App() {
   const [pokemonIndex, setPokemonIndex] = useState(1)
@@ -35,6 +36,7 @@ function App() {
 
       setPokemon(result)
     })
+      setKey(key + 1)
       console.log([pokemon, pokemonIndex])
   }
   , [pokemonIndex])
@@ -46,7 +48,6 @@ function App() {
 
         <button onClick={() => {
           pokemonIndex > 1? setPokemonIndex(Number(pokemonIndex) - 1) : setPokemonIndex(905)
-          setKey(key + 1)
           }} className="button">&larr;</button>
 
         <div className="pokemonInfo" id="image">
@@ -96,9 +97,9 @@ function App() {
         <button
          onClick={() => {
           pokemonIndex < 905? setPokemonIndex(Number(pokemonIndex) + 1): setPokemonIndex(1)
-          setKey(key + 1)
           }} className="button">	&rarr;</button>
       </div>
+          
     </div>
   );
 }
