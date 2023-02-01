@@ -1,7 +1,13 @@
-.app, .allCardsPage{
+.app{
   height: 100vh;
   background-image: url("./background.jpg");
   padding-top: 50px;
+}
+.allCardsPage {
+  height: 100vh;
+  background-image: url("./background.jpg");
+  padding-top: 50px;
+  display: flex;
 }
 .nav {
   background-color: #38de00;
@@ -117,3 +123,9 @@ input {
   }
 }
 
+.searchInput {
+  width: 500px;
+  height: 60px;
+  font-size: 30px;
+  margin: 0 auto
+}
