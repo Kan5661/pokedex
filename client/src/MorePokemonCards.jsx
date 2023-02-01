@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function SearchPokemon() {
     const [allPokemon, setAllPokemon] = useState({})
@@ -14,7 +14,7 @@ function SearchPokemon() {
 
     return(
         <div className='allCardsPage'>
-
+            new branch
         </div>
     )
 }
