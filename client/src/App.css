@@ -1,4 +1,4 @@
-.app {
+.app, .allCardsPage{
   height: 100vh;
   background-image: url("./background.jpg");
   padding-top: 50px;
@@ -11,6 +11,19 @@
   font-weight: 600;
   font-size: 40px;
   border: solid rgba(0, 76, 10, 0.76) 2px;
+  display: flex;
+}
+
+.sliderLink, .allCardLink {
+  font-size: 20px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  flex: 5
 }
 
 .box {

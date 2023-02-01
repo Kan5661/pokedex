@@ -14,11 +14,13 @@ root.render(
       <React.StrictMode>
         <Router>
         <nav className="nav">
-          <Link to='/allcards'>All Cards</Link>
-          <div>Pokédex</div>
+          <Link to='/allcards' className='allCardLink'>All Cards</Link>
+          <div className='title'>Pokédex</div>
+          <Link to='/' className='sliderLink'>slider</Link>
         </nav>
           <Routes>
             <Route path='/' element={<App /> }/>
+            <Route path='/allcards' element={<SearchPokemon /> }/>
           </Routes>
         </Router>
       </React.StrictMode>

@@ -13,8 +13,8 @@ function SearchPokemon() {
     window.onscroll = () => getScroll()
 
     return(
-        <div>
-            
+        <div className='allCardsPage'>
+
         </div>
     )
 }
