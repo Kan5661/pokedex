@@ -1,7 +1,22 @@
-function searchPokemon() {
+import { useState } from 'react'
+
+function SearchPokemon() {
+    const [allPokemon, setAllPokemon] = useState({})
+
+    function getScroll() {
+        let scrollPosition = window.innerHeight + window.scrollY
+        let pageHeight = document.body.offsetHeight
+        if (scrollPosition == pageHeight) {
+            console.log('you are at the bottom of the page')
+        }
+    }
+    window.onscroll = () => getScroll()
+
     return(
-        <div></div>
+        <div>
+            
+        </div>
     )
 }
 
-export default searchPokemon
+export default SearchPokemon

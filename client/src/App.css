@@ -1,6 +1,7 @@
 .app {
   height: 100vh;
   background-image: url("./background.jpg");
+  padding-top: 50px;
 }
 .nav {
   background-color: #38de00;
@@ -15,7 +16,7 @@
 .box {
   max-width: 650px;
   height: 500px;
-  margin: 50px auto auto;
+  margin: 0px auto auto;
   display: grid;
   grid-template-columns: 50px 1fr 50px;
   border: 10px #019328 solid;
@@ -102,3 +103,4 @@ input {
     
   }
 }
+

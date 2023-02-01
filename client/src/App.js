@@ -1,6 +1,5 @@
 import './App.css';
 import { useEffect, useState } from 'react'
-import searchPokemon from './MorePokemonCards.jsx';
 
 function App() {
   const [pokemonIndex, setPokemonIndex] = useState(1)
@@ -43,7 +42,7 @@ function App() {
 
   return (
     <div className="app">
-      <nav className="nav">Pokédex</nav>
+      
       <div className="box">
 
         <button onClick={() => {
@@ -99,7 +98,6 @@ function App() {
           pokemonIndex < 905? setPokemonIndex(Number(pokemonIndex) + 1): setPokemonIndex(1)
           }} className="button">	&rarr;</button>
       </div>
-          
     </div>
   );
 }
