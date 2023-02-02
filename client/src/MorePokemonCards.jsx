@@ -7,10 +7,11 @@ function SearchPokemon() {
     const [searchIndex, setSearchIndex] = useState(1)
     const [refreshPage, setRefreshPage] = useState(0)
     const pokemonList = []
-    let pokemonIndex = 1
+    let namesList = []
 
     function handleChange(e) {
         console.log(e.target.value)
+        setSearchValue(e.target.value)
     }
 
     function getScroll() {
@@ -19,14 +20,15 @@ function SearchPokemon() {
         console.log(scrollPosition, pageHeight)
         if (scrollPosition == pageHeight) {
             console.log('you are at the bottom of the page')
-            setSearchTotal((prev) => prev + 10)
+            // setSearchTotal((prev) => prev + 10)
+            // pokemonIndex((prev) => prev + 10)
             setRefreshPage((prev) => prev + 1)
         }
     }
 
     function fetchPokemon() {
         if (searchValue === '') {
-            for (let i = pokemonIndex; i <= searchTotal; i++) {
+            for (let i = 1; i <= 905; i++) {
                 fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
                 .then(res => res.json())
                 .then(data => {
@@ -35,17 +37,18 @@ function SearchPokemon() {
                         sprite: data.sprites.front_default
                     }
                     pokemonList.push(newPokemon)
+                    namesList.push(newPokemon.name)
                     setAllPokemon(pokemonList)
-                    // setRefreshPage((prev) => prev + 1)
-                    console.log(pokemonList)
+                    setRefreshPage((prev) => prev + 1)
                 })
-                
             }
         }
+        else setAllPokemon([])
+        
     }
     window.onscroll = () => getScroll()
 
-    useEffect(() => fetchPokemon(), [])
+    useEffect(() => fetchPokemon(), [searchValue])
     useEffect(() => {}, [refreshPage])
 
     return(
