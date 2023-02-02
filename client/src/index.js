@@ -11,7 +11,7 @@ import SearchPokemon from './MorePokemonCards.jsx';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
-      <React.StrictMode>
+ 
         <Router>
         <nav className="nav">
           <Link to='/allcards' className='allCardLink'>All Cards</Link>
@@ -23,7 +23,6 @@ root.render(
             <Route path='/allcards' element={<SearchPokemon /> }/>
           </Routes>
         </Router>
-      </React.StrictMode>
 
 );
 
