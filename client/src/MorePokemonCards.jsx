@@ -1,72 +1,80 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 function SearchPokemon() {
-    const [allPokemon, setAllPokemon] = useState([])
-    const [searchValue, setSearchValue] = useState('')
-    const [searchTotal, setSearchTotal] = useState(30)
-    const [searchIndex, setSearchIndex] = useState(1)
-    const [refreshPage, setRefreshPage] = useState(0)
-    const pokemonList = []
-    let pokemonIndex = 1
+    const [allPokemon, setAllPokemon] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
+    const [namesList, setNamesList] = useState([]);
+    const [refreshPage, setRefreshPage] = useState(0);
 
     function handleChange(e) {
-        console.log(e.target.value)
+        setSearchValue(e.target.value);
     }
 
     function getScroll() {
-        let scrollPosition = window.innerHeight + window.scrollY
-        let pageHeight = document.body.offsetHeight
-        console.log(scrollPosition, pageHeight)
-        if (scrollPosition == pageHeight) {
-            console.log('you are at the bottom of the page')
-            setSearchTotal((prev) => prev + 10)
-            setRefreshPage((prev) => prev + 1)
+        const scrollPosition = window.innerHeight + window.scrollY;
+        const pageHeight = document.body.offsetHeight;
+        if (scrollPosition === pageHeight) {
+            setRefreshPage((prev) => prev + 1);
         }
     }
 
-    function fetchPokemon() {
-        if (searchValue === '') {
-            for (let i = pokemonIndex; i <= searchTotal; i++) {
-                fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
-                .then(res => res.json())
-                .then(data => {
-                    const newPokemon = {
-                        name: data.name,
-                        sprite: data.sprites.front_default
-                    }
-                    pokemonList.push(newPokemon)
-                    setAllPokemon(pokemonList)
-                    // setRefreshPage((prev) => prev + 1)
-                    console.log(pokemonList)
-                })
-                
-            }
+    async function fetchPokemonList() {
+        const pokemonList = [];
+        const fetchedNamesList = [];
+        const limit = searchValue === '' ? 905 : namesList.length;
+
+        for (let i = 1; i <= limit; i++) {
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+            const data = await response.json();
+
+            const newPokemon = {
+                name: data.name,
+                sprite: data.sprites.front_default
+            };
+            pokemonList.push(newPokemon);
+            fetchedNamesList.push(newPokemon.name);
         }
+
+        setAllPokemon(pokemonList);
+        setNamesList(fetchedNamesList);
     }
-    window.onscroll = () => getScroll()
 
-    useEffect(() => fetchPokemon(), [])
-    useEffect(() => {}, [refreshPage])
+    useEffect(() => {
+        fetchPokemonList();
+    }, [searchValue, refreshPage]);
 
-    return(
+    useEffect(() => {
+        window.addEventListener('scroll', getScroll);
+        return () => {
+            window.removeEventListener('scroll', getScroll);
+        };
+    }, []);
+
+    const filteredPokemon = allPokemon.filter(pokemon =>
+        pokemon.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
+
+    return (
         <div className='allCardsPage'>
-
             <div className='searchInputDiv'>
-                <input className='searchInput' onChange={handleChange}></input>
+                <input
+                    className='searchInput'
+                    onChange={handleChange}
+                    value={searchValue}
+                    placeholder='Search Pokémon...'
+                ></input>
             </div>
 
             <div className='pokemonCards'>
-            {allPokemon.map(pokemon => {
-                return (
-                    <div>
-                        <img src={pokemon.sprite}></img>
-                        <div>hello</div>
+                {filteredPokemon.map((pokemon, index) => (
+                    <div key={index}>
+                        <img src={pokemon.sprite} alt={pokemon.name}></img>
+                        <div>{pokemon.name}</div>
                     </div>
-                )
-            })}
+                ))}
             </div>
         </div>
-    )
+    );
 }
 
-export default SearchPokemon
+export default SearchPokemon;
