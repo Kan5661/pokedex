@@ -29,7 +29,8 @@ function SearchPokemon() {
 
             const newPokemon = {
                 name: data.name,
-                sprite: data.sprites.front_default
+                sprite: data.sprites.front_default,
+                id: data.id
             };
             pokemonList.push(newPokemon);
             fetchedNamesList.push(newPokemon.name);
@@ -61,15 +62,16 @@ function SearchPokemon() {
                     className='searchInput'
                     onChange={handleChange}
                     value={searchValue}
-                    placeholder='Search Pokémon...'
+                    placeholder='Enter Pokemon Name'
                 ></input>
             </div>
 
             <div className='pokemonCards'>
                 {filteredPokemon.map((pokemon, index) => (
-                    <div key={index}>
+                    <div key={index} className='PokemonCardBG'>
                         <img src={pokemon.sprite} alt={pokemon.name}></img>
-                        <div>{pokemon.name}</div>
+                        <div className='pokemonstat'>{pokemon.name}</div>
+                        <div className='pokemonstat'>#{pokemon.id}</div>
                     </div>
                 ))}
             </div>
