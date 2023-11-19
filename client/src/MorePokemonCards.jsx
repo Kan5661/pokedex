@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { BallTriangle } from  'react-loader-spinner'
 
 function SearchPokemon() {
     const [allPokemon, setAllPokemon] = useState([]);
@@ -32,6 +33,7 @@ function SearchPokemon() {
                 sprite: data.sprites.front_default,
                 id: data.id
             };
+            console.log(newPokemon);
             pokemonList.push(newPokemon);
             fetchedNamesList.push(newPokemon.name);
         }
@@ -65,7 +67,13 @@ function SearchPokemon() {
                     placeholder='Enter Pokemon Name'
                 ></input>
             </div>
-
+        
+            {
+                filteredPokemon.length === 0 ? 
+                <div className='loadingSpinner'>
+                    <BallTriangle color='#0000FF' height={300} width={300} />
+                </div>
+                :
             <div className='pokemonCards'>
                 {filteredPokemon.map((pokemon, index) => (
                     <div key={index} className='PokemonCardBG'>
@@ -75,6 +83,7 @@ function SearchPokemon() {
                     </div>
                 ))}
             </div>
+            }
         </div>
     );
 }
