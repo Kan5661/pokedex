@@ -23,23 +23,25 @@ function SearchPokemon() {
 
     async function fetchAllPokemon() {
         try {
-            const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${totalPokemon}`);
-            const data = await response.json();
+            if (totalPokemon > 0) {
+                const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${totalPokemon}`);
+                const data = await response.json();
 
-            const promises = data.results.map(async (pokemon) => {
-                const pokeResponse = await fetch(pokemon.url);
-                const pokeData = await pokeResponse.json();
-
-                return {
-                    name: pokeData.name,
-                    sprite: pokeData.sprites.front_default,
-                    id: pokeData.id
-                };
-            });
-
-            const pokemonList = await Promise.all(promises);
-            setAllPokemon(pokemonList);
-            setIsLoading(false);
+                const promises = data.results.map(async (pokemon) => {
+                    const pokeResponse = await fetch(pokemon.url);
+                    const pokeData = await pokeResponse.json();
+    
+                    return {
+                        name: pokeData.name,
+                        sprite: pokeData.sprites.front_default,
+                        id: pokeData.id
+                    };
+                });
+    
+                const pokemonList = await Promise.all(promises);
+                setAllPokemon(pokemonList);
+                setIsLoading(false);
+            }
         } catch (error) {
             console.error('Error fetching Pokémon:', error);
             setIsLoading(false);
@@ -51,9 +53,7 @@ function SearchPokemon() {
     }, []);
 
     useEffect(() => {
-        if (totalPokemon > 0) {
-            fetchAllPokemon();
-        }
+        fetchAllPokemon();
     }, [totalPokemon]);
 
     const filteredPokemon = allPokemon.filter((pokemon) =>
@@ -84,7 +84,7 @@ function SearchPokemon() {
                 <div className='pokemonCards'>
                     {filteredPokemon.map((pokemon, index) => (
                         <div key={index} className='PokemonCardBG'>
-                            <img src={pokemon.sprite} alt={pokemon.name}></img>
+                            <img id="morePokemonCards" src={pokemon.sprite} alt={pokemon.name}></img>
                             <div className='pokemonstat'>{pokemon.name}</div>
                             <div className='pokemonstat'>#{pokemon.id}</div>
                         </div>
@@ -96,3 +96,4 @@ function SearchPokemon() {
 }
 
 export default SearchPokemon;
+

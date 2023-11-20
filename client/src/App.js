@@ -35,7 +35,20 @@ function App() {
     pokemonStat: {},
     types: []
   })
+  const [pokemonCount, setPokemonCount] = useState(0)
   const [key, setKey] = useState(1)
+  // create useeffect to fetch total pokemon count
+  useEffect(async() => {
+    try {
+      const response = await fetch('https://pokeapi.co/api/v2/pokemon-species/');
+      const data = await response.json();
+      setPokemonCount(data.count);
+      console.log('Pokémon count:', data.count);
+  } catch (error) {
+      console.error('Error fetching Pokémon count:', error);
+  }
+  }, [])
+
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonIndex}`)
     .then(res => res.json())
@@ -70,7 +83,7 @@ function App() {
       <div className="box">
 
         <button onClick={() => {
-          pokemonIndex > 1? setPokemonIndex(Number(pokemonIndex) - 1) : setPokemonIndex(905)
+          pokemonIndex > 1? setPokemonIndex(Number(pokemonIndex) - 1) : setPokemonIndex(pokemonCount)
           }} className="button">&larr;</button>
 
         <div className="pokemonInfo" id="image">
@@ -83,7 +96,7 @@ function App() {
               <line x1="5" y1="11" x2="10" y2="11" stroke='black'  />
             </svg>
             <form>
-              <input max="905" min="1" type="number" value={pokemonIndex} onChange={(e) => {
+              <input max={pokemonCount} min="1" type="number" value={pokemonIndex} onChange={(e) => {
                 e.preventDefault()
                 setPokemonIndex(e.target.value)
                 }}
@@ -94,24 +107,24 @@ function App() {
             <img key={key} className='pokemonAnimation' src={pokemon.pokemonImgUrl}></img>
             <div className='pokemonTypes'>
               {pokemon.types.map((type) => {
-                if (type === 'bug') return <img className="element" id={type} src={bug}/>
-                if (type === 'dark') return <img className="element" id={type} src={dark}/>
-                if (type === 'dragon') return <img className="element" id={type} src={dragon}/>
-                if (type === 'electric') return <img className="element" id={type} src={electric}/>
-                if (type === 'fairy') return <img className="element" id={type} src={fairy}/>
-                if (type === 'fighting') return <img className="element" id={type} src={fighting}/>
-                if (type === 'fire') return <img className="element" id={type} src={fire}/>
-                if (type === 'flying') return <img className="element" id={type} src={flying}/>
-                if (type === 'ghost') return <img className="element" id={type} src={ghost}/>
-                if (type === 'grass') return <img className="element" id={type} src={grass}/>
-                if (type === 'ground') return <img className="element" id={type} src={ground}/>
-                if (type === 'ice') return <img className="element" id={type} src={ice}/>
-                if (type === 'normal') return <img className="element" id={type} src={normal}/>
-                if (type === 'poison') return <img className="element" id={type} src={poison}/>
-                if (type === 'psychic') return <img className="element" id={type} src={psychic}/>
-                if (type === 'rock') return <img className="element" id={type} src={rock}/>
-                if (type === 'steel') return <img className="element" id={type} src={steel}/>
-                if (type === 'water') return <img className="element" id={type} src={water}/>
+                if (type === 'bug') return <img className="element" id={type} src={bug} title={"type: " + type}/>
+                if (type === 'dark') return <img className="element" id={type} src={dark} title={"type: " + type}/>
+                if (type === 'dragon') return <img className="element" id={type} src={dragon} title={"type: " + type}/>
+                if (type === 'electric') return <img className="element" id={type} src={electric} title={"type: " + type}/>
+                if (type === 'fairy') return <img className="element" id={type} src={fairy} title={"type: " + type}/>
+                if (type === 'fighting') return <img className="element" id={type} src={fighting} title={"type: " + type}/>
+                if (type === 'fire') return <img className="element" id={type} src={fire} title={"type: " + type}/>
+                if (type === 'flying') return <img className="element" id={type} src={flying} title={"type: " + type}/>
+                if (type === 'ghost') return <img className="element" id={type} src={ghost} title={"type: " + type}/>
+                if (type === 'grass') return <img className="element" id={type} src={grass} title={"type: " + type}/>
+                if (type === 'ground') return <img className="element" id={type} src={ground} title={"type: " + type}/>
+                if (type === 'ice') return <img className="element" id={type} src={ice} title={"type: " + type}/>
+                if (type === 'normal') return <img className="element" id={type} src={normal} title={"type: " + type}/>
+                if (type === 'poison') return <img className="element" id={type} src={poison} title={"type: " + type}/>
+                if (type === 'psychic') return <img className="element" id={type} src={psychic} title={"type: " + type}/>
+                if (type === 'rock') return <img className="element" id={type} src={rock} title={"type: " + type}/>
+                if (type === 'steel') return <img className="element" id={type} src={steel} title={"type: " + type}/>
+                if (type === 'water') return <img className="element" id={type} src={water} title={"type: " + type}/>
               })}
             </div>
           </div> 
@@ -141,7 +154,7 @@ function App() {
 
         <button
          onClick={() => {
-          pokemonIndex < 905? setPokemonIndex(Number(pokemonIndex) + 1): setPokemonIndex(1)
+          pokemonIndex < pokemonCount? setPokemonIndex(Number(pokemonIndex) + 1): setPokemonIndex(1)
           }} className="button">	&rarr;</button>
       </div>
     </div>
