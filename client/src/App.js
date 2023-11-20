@@ -36,6 +36,19 @@ function App() {
     types: []
   })
   const [key, setKey] = useState(1)
+  const [totalPokemon, setTotalPokemon] = useState(0)
+
+  async function fetchPokemonCount() {
+    try {
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon-species/');
+        const data = await response.json();
+        setTotalPokemon(data.count);
+    } catch (error) {
+        console.error('Error fetching Pokémon count:', error);
+    }
+}
+
+
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonIndex}`)
     .then(res => res.json())
@@ -59,6 +72,8 @@ function App() {
 
       setPokemon(result)
     })
+
+      fetchPokemonCount()
       setKey(key + 1)
       console.log([pokemon, pokemonIndex])
   }
@@ -70,7 +85,7 @@ function App() {
       <div className="box">
 
         <button onClick={() => {
-          pokemonIndex > 1? setPokemonIndex(Number(pokemonIndex) - 1) : setPokemonIndex(905)
+          pokemonIndex > 1? setPokemonIndex(Number(pokemonIndex) - 1) : setPokemonIndex(totalPokemon)
           }} className="button">&larr;</button>
 
         <div className="pokemonInfo" id="image">
@@ -83,7 +98,7 @@ function App() {
               <line x1="5" y1="11" x2="10" y2="11" stroke='black'  />
             </svg>
             <form>
-              <input max="905" min="1" type="number" value={pokemonIndex} onChange={(e) => {
+              <input max={totalPokemon} min="1" type="number" value={pokemonIndex} onChange={(e) => {
                 e.preventDefault()
                 setPokemonIndex(e.target.value)
                 }}
@@ -141,7 +156,7 @@ function App() {
 
         <button
          onClick={() => {
-          pokemonIndex < 905? setPokemonIndex(Number(pokemonIndex) + 1): setPokemonIndex(1)
+          pokemonIndex < totalPokemon? setPokemonIndex(Number(pokemonIndex) + 1): setPokemonIndex(1)
           }} className="button">	&rarr;</button>
       </div>
     </div>

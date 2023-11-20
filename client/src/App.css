@@ -35,10 +35,9 @@
 
 .box {
   max-width: 650px;
-  height: 500px;
+  /* height: 500px; */
   margin: 0px auto auto;
-  display: grid;
-  grid-template-columns: 50px 1fr 50px;
+  display: flex;
   border: 10px #019328 solid;
   box-shadow: 0 0 10px 5px black;
 }
@@ -47,8 +46,8 @@
   border: solid rgb(42, 206, 83) 1px;
   display: grid;
   grid-template-rows: 20px 2fr 1fr;
-  min-width: 500px;
-  
+  min-width: 280px;
+  flex-grow: 1;
 }
 
 .button {
@@ -125,11 +124,30 @@ input {
   }
 }
 
+/* change default input text color to white */
 .searchInput {
+  color: white;
   width: 500px;
   height: 60px;
   font-size: 30px;
+  border-radius: 20px;
+  background-color: #38de00;
+  border: 2px solid rgb(0, 76, 10);
+  box-shadow: 0 0 5px 5px rgb(0, 76, 10);
+  padding: 0 20px;
+  outline: none;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 10px; 
 }
+
+.searchInput::placeholder {
+  color: green;
+  font-weight: 600;
+  font-size: 30px;
+  text-align: center;
+}
+
 .searchInputDiv {
   display: flex;
   justify-content: center;
@@ -168,6 +186,7 @@ input {
   height: 50px;
   align-items: center;
   justify-content: flex-end;
+  margin-right: 5px;
 }
 
 .element {
@@ -175,7 +194,7 @@ input {
   height: 20px;
   border-radius: 50%;
   padding: 5px;
-  margin: 0 10px;
+  margin: 0 5px;
   /* box-shadow: 0 0 2px 0.5px #2b2b2b;
   border: 0.5px solid rgb(49, 49, 49); */
 }
@@ -270,4 +289,29 @@ input {
 #water {
   background-color: #559edf;
   box-shadow: 0 0 3px 0.5px #559edfe0;
+}
+
+@media screen and (max-width: 500px) {
+  .pokemonInfo {
+  }
+  .button {
+    display: none;
+  }
+  .box {
+    margin: 0px 10px
+  }
+
+  .info {
+    font-size: 10px;
+  }
+
+  #morePokemonCards {
+    height: 150px;
+  }
+
+  .searchInput {
+    width: 320px;
+    height: 40px;
+    
+  }
 }
