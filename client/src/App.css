@@ -65,7 +65,7 @@
 
 img {
   margin: auto auto;
-  height: 300px;
+  height: 250px;
 }
 .pokemonAnimation {
   animation: pokemonFadeIn 1s
@@ -73,6 +73,7 @@ img {
 .image {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 .pokemonDescription {
@@ -143,10 +144,10 @@ input {
 
 .PokemonCardBG {
   background-color: rgba(62, 255, 91, 0.815);
-  border-radius: 10%;
-  margin: 10px;
+  border-radius: 10px;
+  margin: 15px;
   border: 5px solid rgba(0, 0, 0, 0.737);
-  box-shadow: 0 0 5px 5px black;
+  box-shadow: 0 0 5px 5px rgb(0, 0, 0);
 }
 
 .pokemonstat {
@@ -160,4 +161,113 @@ input {
   justify-content: center;
   align-items: center;
   height: 70vh;
+}
+
+.pokemonTypes {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.element {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  padding: 5px;
+  margin: 0 10px;
+  /* box-shadow: 0 0 2px 0.5px #2b2b2b;
+  border: 0.5px solid rgb(49, 49, 49); */
+}
+
+/* add box shadow that is same color as background color but a little big lighter */
+#bug {
+  background-color: #9bbb48;
+  box-shadow: 0 0 3px 0.5px #9abb48e0;
+}
+
+#grass {
+  background-color: #78bb64;
+  box-shadow: 0 0 3px 0.5px #78bb64e0;
+}
+
+#dark {
+  background-color: #595761;
+  box-shadow: 0 0 3px 0.5px #595761e0;
+
+}
+
+#dragon {
+  background-color: #2f68c1;
+  box-shadow: 0 0 3px 0.5px #2f68c1e0;
+}
+
+#electric {
+  background-color: #eeda67;
+  box-shadow: 0 0 3px 0.5px #eeda67e0;
+}
+
+#fairy {
+  background-color: #e295e1;
+  box-shadow: 0 0 3px 0.5px #e295e1e0;
+}
+
+#fighting {
+  background-color: #d56723;
+  box-shadow: 0 0 3px 0.5px #d56723e0;
+}
+
+#fire {
+  background-color: #ff9c54;
+  box-shadow: 0 0 3px 0.5px #ff9c54e0;
+}
+
+#flying {
+  background-color: #748fc9;
+  box-shadow: 0 0 3px 0.5px #748fc9e0;
+}
+
+#ghost {
+  background-color: #556aae;
+  box-shadow: 0 0 3px 0.5px #556aaee0;
+}
+
+#ground {
+  background-color: #ddc075;
+  box-shadow: 0 0 3px 0.5px #ddc075e0;
+}
+
+#ice {
+  background-color: #61cec0;
+  box-shadow: 0 0 3px 0.5px #61cec0e0;
+}
+
+#normal {
+  background-color: #9da0aa;
+  box-shadow: 0 0 3px 0.5px #9da0aae0;
+}
+
+#poison {
+  background-color: #a95ca0;
+  box-shadow: 0 0 3px 0.5px #a95ca0e0;
+}
+
+#psychic {
+  background-color: #ea5d8c;
+  box-shadow: 0 0 3px 0.5px #ea5d8ce0;
+}
+
+#rock {
+  background-color: #baab82;
+  box-shadow: 0 0 3px 0.5px #baab82e0;
+}
+
+#steel {
+  background-color: #5a8ea1;
+  box-shadow: 0 0 3px 0.5px #5a8ea1e0;
+}
+
+#water {
+  background-color: #559edf;
+  box-shadow: 0 0 3px 0.5px #559edfe0;
 }

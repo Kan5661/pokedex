@@ -1,6 +1,28 @@
 import './App.css';
 import { useEffect, useState } from 'react'
 
+// import all pokemon elements from icons folder
+import bug from './icons/bug.svg'
+import dark from './icons/dark.svg'
+import dragon from './icons/dragon.svg'
+import electric from './icons/electric.svg'
+import fairy from './icons/fairy.svg'
+import fighting from './icons/fighting.svg'
+import fire from './icons/fire.svg'
+import flying from './icons/flying.svg'
+import ghost from './icons/ghost.svg'
+import grass from './icons/grass.svg'
+import ground from './icons/ground.svg'
+import ice from './icons/ice.svg'
+import normal from './icons/normal.svg'
+import poison from './icons/poison.svg'
+import psychic from './icons/psychic.svg'
+import rock from './icons/rock.svg'
+import steel from './icons/steel.svg'
+import water from './icons/water.svg'
+
+
+
 function App() {
   const [pokemonIndex, setPokemonIndex] = useState(1)
   const [pokemon, setPokemon] = useState({
@@ -10,7 +32,8 @@ function App() {
     pokemonHeight: 0,
     pokemonWeight: 0,
     pokemonAbilties: [],
-    pokemonStat: {}
+    pokemonStat: {},
+    types: []
   })
   const [key, setKey] = useState(1)
   useEffect(() => {
@@ -32,6 +55,7 @@ function App() {
           special_defense: data.stats[4].base_stat,
           speed: data.stats[5].base_stat,
         }
+        result.types = data.types.map((item) => item.type.name)
 
       setPokemon(result)
     })
@@ -68,7 +92,29 @@ function App() {
           </div>
           <div className="image">
             <img key={key} className='pokemonAnimation' src={pokemon.pokemonImgUrl}></img>
-          </div>
+            <div className='pokemonTypes'>
+              {pokemon.types.map((type) => {
+                if (type === 'bug') return <img className="element" id={type} src={bug}/>
+                if (type === 'dark') return <img className="element" id={type} src={dark}/>
+                if (type === 'dragon') return <img className="element" id={type} src={dragon}/>
+                if (type === 'electric') return <img className="element" id={type} src={electric}/>
+                if (type === 'fairy') return <img className="element" id={type} src={fairy}/>
+                if (type === 'fighting') return <img className="element" id={type} src={fighting}/>
+                if (type === 'fire') return <img className="element" id={type} src={fire}/>
+                if (type === 'flying') return <img className="element" id={type} src={flying}/>
+                if (type === 'ghost') return <img className="element" id={type} src={ghost}/>
+                if (type === 'grass') return <img className="element" id={type} src={grass}/>
+                if (type === 'ground') return <img className="element" id={type} src={ground}/>
+                if (type === 'ice') return <img className="element" id={type} src={ice}/>
+                if (type === 'normal') return <img className="element" id={type} src={normal}/>
+                if (type === 'poison') return <img className="element" id={type} src={poison}/>
+                if (type === 'psychic') return <img className="element" id={type} src={psychic}/>
+                if (type === 'rock') return <img className="element" id={type} src={rock}/>
+                if (type === 'steel') return <img className="element" id={type} src={steel}/>
+                if (type === 'water') return <img className="element" id={type} src={water}/>
+              })}
+            </div>
+          </div> 
           <div className="pokemonDescription">
             <div className="info">
               <p> <span id="attr">Name:</span> {pokemon.pokemonName}</p>
