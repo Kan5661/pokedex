@@ -14,9 +14,9 @@ root.render(
  
         <Router>
         <nav className="nav">
-          <Link to='/allcards' className='allCardLink'>All Cards</Link>
+          <Link to='/allcards' className='allCardLink'>All Pokémon</Link>
           <div className='title'>Pokédex</div>
-          <Link to='/' className='sliderLink'>slider</Link>
+          <Link to='/' className='sliderLink'>Pokémon Stats</Link>
         </nav>
           <Routes>
             <Route path='/' element={<App /> }/>
